@@ -6,7 +6,7 @@ maximum of 100 domains
 
 ---
 -- @usage
--- nmap -p80 --script http-robtex-reverse-ip <host>
+-- nmap -p80 --script=http-robtex-reverse-ip <host>
 --
 -- @output
 -- PORT   STATE SERVICE
@@ -66,6 +66,6 @@ action = function(host, port)
 	local htmldata = http.get_url(link)
 	local domains = parse_robtex_response(htmldata.body)
 	if #domains > 0 then
-	    return "\n" .. stdnse.strjoin("\n", domains)
+	    return "\n" .. stdnse.format_output(true, domains)
 	end	
 end
